@@ -50,7 +50,7 @@ The project includes key visualizations such as:
 
 A full breakdown of business insights and recommendations is provided in a separate document:
 
-👉 [Insights & Recommendations](insights.md)
+👉 [Insights & Recommendations](insights/py_business_insights.md)
 
 ---
 
