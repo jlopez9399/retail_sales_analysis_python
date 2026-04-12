@@ -1,12 +1,12 @@
-# 📊 Inventory Risk & Lost Revenue Analysis (Python)
+# Inventory Risk & Lost Revenue Analysis (Python)
 
-## 📌 Project Overview
+## Project Overview
 
 This project analyzes inventory performance to identify lost revenue opportunities and stockout risks across products. The analysis focuses on uncovering inefficiencies in inventory management and highlighting high-impact areas for optimization.
 
 ---
 
-## 🛠️ Tools & Technologies
+## Tools & Technologies
 
 * Python
 * Pandas (data manipulation)
@@ -15,7 +15,7 @@ This project analyzes inventory performance to identify lost revenue opportuniti
 
 ---
 
-## 📂 Dataset
+## Dataset
 
 The dataset includes product-level inventory metrics such as:
 
@@ -26,7 +26,7 @@ The dataset includes product-level inventory metrics such as:
 
 ---
 
-## 🔍 Analysis Performed
+## Analysis Performed
 
 * Data cleaning and preprocessing
 * Exploratory data analysis (EDA)
@@ -35,7 +35,7 @@ The dataset includes product-level inventory metrics such as:
 
 ---
 
-## 📊 Visualizations
+## Visualizations
 
 The project includes key visualizations such as:
 
@@ -45,10 +45,10 @@ The project includes key visualizations such as:
 
 ---
 
-## 📄 Detailed Analysis
+## Detailed Analysis
 
 A full breakdown of business insights and recommendations is included in the repository under the `insights` folder.
 
-## 🎯 Key Takeaway
+## Key Takeaway
 
 This project demonstrates the ability to analyze operational data, identify performance issues, and support data-driven decision-making through structured analysis and visualization.
