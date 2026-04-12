@@ -1,4 +1,4 @@
-📊 Python Inventory & Revenue Analysis Project
+Python Inventory & Revenue Analysis Project
 🔹 Objective
 Analyze the relationship between demand, inventory (stockouts), and revenue using Python to identify inefficiencies and uncover opportunities for revenue growth.
 
@@ -8,37 +8,37 @@ Data Visualization (Matplotlib / Seaborn Bubble Chart)
 Exploratory Data Analysis (EDA)
 
 🔹 Key Insights
-📦 Demand vs Supply Imbalance
+Demand vs Supply Imbalance
 Multiple brands show high stockout rates, meaning products are frequently unavailable
 Indicates inventory planning is not aligned with demand
 Stockouts directly result in lost sales, not delayed purchases
 
-💰 Lost Revenue is Highly Concentrated
+Lost Revenue is Highly Concentrated
 A small number of brands account for most of the lost revenue
 Revenue loss is driven more by scale (demand volume) than stockout rate alone
 Even moderate stockouts can cause large losses when demand is high
 
-📈 High-Price, High-Demand Opportunity
+High-Price, High-Demand Opportunity
 Some brands have high prices + high stockout rates
 Indicates strong demand even at premium pricing
 These represent high-margin growth opportunities if supply is increased
 
-🔄 Low-Price, High-Volume Pressure
+Low-Price, High-Volume Pressure
 Lower-priced brands also show frequent stockouts
 These are likely fast-moving, high-demand products
 Critical for maintaining sales volume and customer traffic
 
-📉 Overstock / Weak Demand Segments
+Overstock / Weak Demand Segments
 Some higher-priced brands have low stockout rates
 Suggests overstocking or weak demand
 Leads to capital being tied up and risk of markdowns
 
-⚖️ Core Market Stability
+Core Market Stability
 Most brands fall into a mid-price, moderate stockout range
 Indicates a relatively balanced supply-demand relationship
 Represents the core, stable segment of the business
 
-📌 Strategic Recommendation
+Strategic Recommendation
 The business should prioritize inventory optimization based on revenue impact, not just stockout rates.
 Key actions include:
 Focus on high lost-revenue brands first → biggest immediate financial impact
@@ -47,7 +47,7 @@ Stabilize stock for low-price, high-volume products to maintain consistent sales
 Reduce overstock in weak-demand segments through pricing adjustments or promotions
 Improve demand forecasting and supply chain alignment to prevent recurring stockouts
 
-🚀 Key Takeaway
+Key Takeaway
 Not all stockouts are equally important — the highest impact comes from high-demand, high-revenue products. By prioritizing these areas, the business can reduce lost revenue, improve inventory efficiency, and drive scalable growth.
 
 
