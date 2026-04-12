@@ -2,7 +2,7 @@
 
 ## 📌 Project Overview
 
-This project analyzes inventory performance to identify **lost revenue opportunities** and **stockout risks** across products. The analysis focuses on uncovering inefficiencies in inventory management and highlighting high-impact areas for optimization.
+This project analyzes inventory performance to identify lost revenue opportunities and stockout risks across products. The analysis focuses on uncovering inefficiencies in inventory management and highlighting high-impact areas for optimization.
 
 ---
 
