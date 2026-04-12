@@ -1,0 +1,127 @@
+# ------------------------------
+# Data Loading
+# This section imports the dataset and performs initial inspection
+# to understand its structure, data types, and overall quality.
+# ------------------------------
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv('products_asos.csv', on_bad_lines='skip')
+
+df['price'] = pd.to_numeric(df['price'], errors='coerce')
+df = df.dropna(subset=['price'])
+
+print(f"Data Loaded: {len(df)} rows")
+print(df.head())
+
+
+# ------------------------------
+# Data Cleaning & Preprocessing
+# This step handles missing values, corrects data types, and prepares
+# the dataset for analysis to ensure accuracy and consistency.
+# ------------------------------
+
+df['description'] = df['description'].astype(str)
+
+def get_brand(text):
+    if 'by' in text:
+        try:
+            return text.split('by ')[1].split(' ')[0]
+        except:
+            return "Unknown"
+    return "Unknown"
+
+df['brand_raw'] = df['description'].apply(get_brand)
+print(df.head(3))
+
+
+# ------------------------------
+# Brand Standardization
+# This section standardizes extracted brand names and filters out
+# low-frequency brands to improve analysis quality.
+# ------------------------------
+
+brand_map = {
+    'New': 'New Look',
+    'River': 'River Island',
+    'Miss': 'Miss Selfridge',
+    'TopshopWelcome': 'Topshop'
+}
+
+df['brand'] = df['brand_raw'].replace(brand_map).fillna(df['brand_raw'])
+
+brand_count = df['brand'].value_counts()
+valid_brands = brand_count[brand_count > 5].index
+df_clean = df[df['brand'].isin(valid_brands)].copy()
+
+print(df_clean['brand'].value_counts().head(5))
+
+
+# ------------------------------
+# Exploratory Data Analysis (EDA)
+# This section calculates stockout metrics and estimated lost revenue
+# to identify high-risk products and brands.
+# ------------------------------
+
+def calculate_phantom_revenue(size_str):
+    if not isinstance(size_str, str):
+        return 0, 0.0
+
+    sizes = size_str.split(',')
+    total_sizes = len(sizes)
+    out_of_stock_count = size_str.count('Out of stock')
+    rate = out_of_stock_count / total_sizes if total_sizes > 0 else 0.0
+
+    return out_of_stock_count, rate
+
+metrics = df_clean['size'].apply(lambda x: calculate_phantom_revenue(x))
+
+df_clean['Stockout_Count'] = [x[0] for x in metrics]
+df_clean['Stockout_Rate'] = [x[1] for x in metrics]
+df_clean['Lost_Revenue'] = df_clean['price'] * df_clean['Stockout_Count']
+
+cols = ['brand', 'name', 'price', 'size', 'Stockout_Count', 'Stockout_Rate', 'Lost_Revenue']
+print(df_clean.sort_values(by='Lost_Revenue', ascending=False).head(5)[cols])
+
+
+# ------------------------------
+# Visualization
+# This section visualizes brand-level inventory risk by comparing
+# average price, stockout rate, and lost revenue.
+# ------------------------------
+
+brand_strategy = df_clean.groupby('brand').agg({
+    'price': 'mean',
+    'Stockout_Rate': 'mean',
+    'Lost_Revenue': 'sum',
+    'name': 'count'
+}).reset_index()
+
+brand_strategy = brand_strategy[brand_strategy['name'] > 10]
+
+plt.figure(figsize=(12, 8))
+sns.scatterplot(
+    data=brand_strategy,
+    x='price',
+    y='Stockout_Rate',
+    size='Lost_Revenue',
+    sizes=(50, 1000),
+    alpha=0.7
+)
+
+winners = brand_strategy[
+    (brand_strategy['price'] > 40) &
+    (brand_strategy['Stockout_Rate'] > 0.4)
+]
+
+for i in range(len(winners)):
+    plt.text(winners.iloc[i]['price'], winners.iloc[i]['Stockout_Rate'], winners.iloc[i]['brand'])
+
+plt.xlabel('Average Price')
+plt.ylabel('Stockout Rate')
+plt.title('Brand Strategy Analysis')
+plt.axvline(x=40, color='red', linestyle='--')
+plt.axhline(y=0.4, color='red', linestyle='--')
+plt.show()
