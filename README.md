@@ -39,8 +39,7 @@ The dataset includes product-level inventory metrics such as:
 
 The project includes key visualizations such as:
 
-* Bubble chart (stockout rate vs. lost revenue)
-* Comparative analysis of product performance
+- Bubble chart (average price vs. stockout rate, sized by lost revenue)
 
 *(See images in the /images folder)*
 
